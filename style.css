@@ -1915,6 +1915,16 @@ body.no-scroll {
   padding: 8px 16px;
 }
 
+/* "↓ 実際に操作できます" guidance under the booking heading */
+.contact-try {
+  text-align: center;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin: -8px 0 28px;
+  letter-spacing: .04em;
+}
+
 @media (max-width: 768px) {
   .steps3 { grid-template-columns: 1fr; }
 }

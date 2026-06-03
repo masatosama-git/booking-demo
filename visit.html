@@ -58,6 +58,67 @@
     </div>
   </section>
 
+  <!-- Contact (予約セクション：ヒーロー直下に配置) -->
+  <section id="contact" class="section contact" aria-label="予約">
+    <div class="container">
+      <h2 class="section-label center">予約する</h2>
+      <p class="section-subtitle">ご希望の日時をカレンダーから選び、フォームから申し込んでください。受付の確認メールが自動で届きます。</p>
+      <p class="contact-try">&darr; このデモは実際に操作できます</p>
+      <div class="contact-layout">
+        <div class="av-section fade-in">
+          <p class="av-accepting">ただいま、ご予約を承っております。</p>
+          <h3 class="av-section-title">空き状況</h3>
+          <div class="av-legend">
+            <span class="av-legend-item"><span class="av-dot av-open"></span>空きあり</span>
+            <span class="av-legend-item"><span class="av-dot av-limited"></span>空き少</span>
+            <span class="av-legend-item"><span class="av-dot av-busy"></span>空きなし</span>
+          </div>
+          <div id="availabilityCalendar" class="av-calendars"></div>
+          <p class="av-note">ご希望の日時をカレンダーからお選びください。</p>
+        </div>
+      <div class="contact-inner">
+        <div class="contact-info fade-in">
+          <p>ご希望の日時・コース・ご住所をお伝えいただけるとスムーズです。</p>
+          <p class="contact-note">送信後、受付の確認メールが自動で届きます（このデモでは実際の送信は行われません）。</p>
+        </div>
+        <form class="contact-form fade-in" id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label for="name">お名前 <span class="required">*</span></label><input type="text" id="name" name="name" required autocomplete="name"></div>
+            <div class="form-group"><label for="email">メールアドレス <span class="required">*</span></label><input type="email" id="email" name="email" required autocomplete="email"></div>
+          </div>
+          <div class="form-group">
+            <label for="category">コース・ご相談内容</label>
+            <select id="category" name="category">
+              <option value="">選択してください</option>
+              <option value="first">初回ご訪問</option>
+              <option value="standard">通常コース</option>
+              <option value="regular">定期ご利用</option>
+              <option value="online">オンライン相談</option>
+              <option value="area">対応エリア確認</option>
+              <option value="other">その他（ご相談）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ご希望の日時 <span class="optional">任意</span></label>
+            <div class="date-slot-picker">
+              <input type="date" id="preferredDatePicker" class="preferred-date-input">
+              <div id="slotContainer" class="slot-container" style="display:none">
+                <p class="slot-loading" id="slotLoading">空き枠を確認中...</p>
+                <div id="slotButtons" class="slot-buttons"></div>
+                <p class="slot-none" id="slotNone" style="display:none">この日は空きがありません。別の日をお選びいただくか、日時未定のままご相談ください。</p>
+              </div>
+            </div>
+            <p class="form-hint">日程が決まっていない場合はそのまま送信いただけます。</p>
+            <input type="hidden" id="preferredDate" name="preferredDate">
+          </div>
+          <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message" rows="4" placeholder="ご住所（市区町村）、ご要望やご質問など"></textarea></div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <section id="genre" class="section genre-section" aria-label="対応サービス">
     <div class="container">
       <h2 class="section-label center">Service</h2>
@@ -239,71 +300,6 @@
             </dl>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="contact-nudge">
-    <div class="container">
-      <p class="contact-nudge-text">空いている日時を選んで申し込むだけ。<br>受付の確認メールが、自動で届きます。</p>
-    </div>
-  </div>
-
-  <section id="contact" class="section contact" aria-label="予約">
-    <div class="container">
-      <h2 class="section-label center">予約する</h2>
-      <p class="section-subtitle">ご希望の日時をカレンダーから選び、フォームから申し込んでください。受付の確認メールが自動で届きます。</p>
-      <div class="contact-layout">
-        <div class="av-section fade-in">
-          <p class="av-accepting">ただいま、ご予約を承っております。</p>
-          <h3 class="av-section-title">空き状況</h3>
-          <div class="av-legend">
-            <span class="av-legend-item"><span class="av-dot av-open"></span>空きあり</span>
-            <span class="av-legend-item"><span class="av-dot av-limited"></span>空き少</span>
-            <span class="av-legend-item"><span class="av-dot av-busy"></span>空きなし</span>
-          </div>
-          <div id="availabilityCalendar" class="av-calendars"></div>
-          <p class="av-note">平日は夜の枠のみ表示しています。平日昼のご希望は、フォームからご相談ください。</p>
-        </div>
-      <div class="contact-inner">
-        <div class="contact-info fade-in">
-          <p>ご希望の日時・コース・ご住所をお伝えいただけるとスムーズです。</p>
-          <p class="contact-note">送信後、受付の確認メールが自動で届きます（このデモでは実際の送信は行われません）。</p>
-        </div>
-        <form class="contact-form fade-in" id="contactForm">
-          <div class="form-row">
-            <div class="form-group"><label for="name">お名前 <span class="required">*</span></label><input type="text" id="name" name="name" required autocomplete="name"></div>
-            <div class="form-group"><label for="email">メールアドレス <span class="required">*</span></label><input type="email" id="email" name="email" required autocomplete="email"></div>
-          </div>
-          <div class="form-group">
-            <label for="category">コース・ご相談内容</label>
-            <select id="category" name="category">
-              <option value="">選択してください</option>
-              <option value="first">初回ご訪問</option>
-              <option value="standard">通常コース</option>
-              <option value="regular">定期ご利用</option>
-              <option value="online">オンライン相談</option>
-              <option value="area">対応エリア確認</option>
-              <option value="other">その他（ご相談）</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>ご希望の日時 <span class="optional">任意</span></label>
-            <div class="date-slot-picker">
-              <input type="date" id="preferredDatePicker" class="preferred-date-input">
-              <div id="slotContainer" class="slot-container" style="display:none">
-                <p class="slot-loading" id="slotLoading">空き枠を確認中...</p>
-                <div id="slotButtons" class="slot-buttons"></div>
-                <p class="slot-none" id="slotNone" style="display:none">この日は空きがありません。別の日をお選びいただくか、日時未定のままご相談ください。</p>
-              </div>
-            </div>
-            <p class="form-hint">日程が決まっていない場合はそのまま送信いただけます。</p>
-            <input type="hidden" id="preferredDate" name="preferredDate">
-          </div>
-          <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message" rows="4" placeholder="ご住所（市区町村）、ご要望やご質問など"></textarea></div>
-          <button type="submit" class="form-submit">送信する</button>
-        </form>
-      </div>
       </div>
     </div>
   </section>

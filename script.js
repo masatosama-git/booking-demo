@@ -19,6 +19,7 @@ const MockApi = (() => {
   }
 
   // 月間空き状況：各日に am/pm/eve の ○/△/× を返す（過去日は past）
+  // 汎用店：平日・土日祝とも営業（10:00〜19:00）。曜日に関わらず午前/午後/夜に空き状況を表示。
   function getMonth(key) {
     // key: "YYYY-MM"
     const [y, m] = key.split('-').map(Number);
@@ -31,46 +32,39 @@ const MockApi = (() => {
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${y}-${String(m).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const d = new Date(y, m - 1, day);
-      const wday = d.getDay();
 
       if (d < today) {
         data[dateStr] = { am: 'past', pm: 'past', eve: 'past' };
         continue;
       }
 
+      // 曜日を問わず、午前・午後・夜すべてに○△×を表示（日付シードで適度に混ぜる）
       const s = seed(dateStr);
-      const isWeekend = wday === 0 || wday === 6;
-
-      if (isWeekend) {
-        // 土日は午前・午後・夜すべて表示
-        data[dateStr] = {
-          am: pick(s, marks),
-          pm: pick(s + 7, marks),
-          eve: pick(s + 13, marks),
-        };
-      } else {
-        // 平日は夜枠のみ（am/pm は n/a）
-        data[dateStr] = {
-          am: 'n/a',
-          pm: 'n/a',
-          eve: pick(s + 13, marks),
-        };
-      }
+      data[dateStr] = {
+        am: pick(s, marks),
+        pm: pick(s + 7, marks),
+        eve: pick(s + 13, marks),
+      };
     }
     return data;
   }
 
-  // 日別スロット：選択日に対しサンプル枠を返す
+  // 日別スロット：選択日に対し 10:00〜18:30 のフル枠（30分刻み）を返す。
+  // 一部は「埋まり」として非表示にし、リアルな空き具合を再現。曜日を問わず日中枠も出る。
   function getSlots(dateStr) {
-    const base = ['10:00', '11:00', '13:30', '15:00', '17:00', '19:00'];
+    // 営業時間 10:00〜19:00、30分刻み（最終受付 18:30）
+    const all = [];
+    for (let h = 10; h < 19; h++) {
+      all.push(`${String(h).padStart(2, '0')}:00`);
+      all.push(`${String(h).padStart(2, '0')}:30`);
+    }
     const s = seed(dateStr);
-    if (s % 7 === 0) return []; // たまに「空きなし」
-    const count = 3 + (s % 4); // 3〜6枠
-    const d = new Date(dateStr);
-    const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-    // 平日は夜枠中心
-    const pool = isWeekend ? base : ['18:00', '19:00', '20:00'];
-    return pool.slice(0, Math.min(count, pool.length));
+    if (s % 11 === 0) return []; // たまに「空きなし」
+    // 各枠を日付＋時刻のシードで埋まり/空きに振り分け（約4割が埋まり）
+    return all.filter((time, i) => {
+      const ts = seed(dateStr + time);
+      return ts % 5 >= 2; // 0,1=埋まり(非表示) / 2,3,4=空き(表示)
+    });
   }
 
   // 200msほどの擬似遅延でネットワーク感を再現
