@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-salon">
 
-  <div class="demo-banner">これはサロン向け予約自動化システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
+  <div class="demo-banner">これはサロン向け予約システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -25,12 +25,10 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#genre">Service</a></li>
         <li><a href="#gallery">3 Steps</a></li>
-        <li><a href="#voice">Voice</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#flow">Flow</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#faq">Q&amp;A</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="index.html">他の例</a></li>
         <li><a href="#contact" class="nav-cta">予約する</a></li>
       </ul>
     </div>
@@ -38,9 +36,9 @@
 
   <section class="hero">
     <div class="hero-slides">
-      <div class="hero-slide active"><span class="hero-ph-label">Lumiel</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Salon</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Booking</span></div>
+      <div class="hero-slide active" role="img" aria-label="サロンの店内イメージ"></div>
+      <div class="hero-slide" role="img" aria-label="施術空間のイメージ"></div>
+      <div class="hero-slide" role="img" aria-label="落ち着いた空間のイメージ"></div>
     </div>
     <div class="hero-dots">
       <button class="hero-dot active" aria-label="スライド1"></button>
@@ -99,6 +97,15 @@
             </select>
           </div>
           <div class="form-group">
+            <label for="staff">ご指名スタッフ <span class="optional">任意</span></label>
+            <select id="staff" name="staff">
+              <option value="">指名なし（おまかせ）</option>
+              <option value="staff-a">スタッフ A</option>
+              <option value="staff-b">スタッフ B</option>
+              <option value="staff-c">スタッフ C</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>ご希望の日時 <span class="optional">任意</span></label>
             <div class="date-slot-picker">
               <input type="date" id="preferredDatePicker" class="preferred-date-input">
@@ -126,18 +133,22 @@
       <p class="genre-lead">ご来店のご予約は、すべてオンラインで。指名や当日のメニュー変更もご相談いただけます。</p>
       <div class="genre-grid">
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-salon-2.jpg" alt="カット・施術メニューのイメージ" loading="lazy">
           <h3 class="genre-title">カット・施術メニュー</h3>
           <p class="genre-body">カット・カラー・パーマなど。ご希望のメニューと日時を選んで、そのままご予約いただけます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/about-salon.jpg" alt="初回ご来店のイメージ" loading="lazy">
           <h3 class="genre-title">初回ご来店</h3>
           <p class="genre-body">はじめてのご来店も安心。カウンセリングを含めてゆっくりご案内します。ネットからご予約いただけます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-salon-3.jpg" alt="リタッチ・メンテナンスのイメージ" loading="lazy">
           <h3 class="genre-title">リタッチ・メンテナンス</h3>
           <p class="genre-body">前回の施術のメンテナンスに。次回のご予約も、空き状況を見ながらスマホで完結します。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-salon-1.jpg" alt="ネイル・エステ・リラクのイメージ" loading="lazy">
           <h3 class="genre-title">ネイル・エステ・リラク</h3>
           <p class="genre-body">各種メニューのご予約に対応。日程変更やキャンセルもオンラインでスムーズに行えます。</p>
         </div>
@@ -284,7 +295,7 @@
   <section id="about" class="section about" aria-label="このサロンについて">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image about-ph fade-in"><span class="about-ph-label">Lumiel</span></div>
+        <div class="about-image fade-in"><img src="images/about-salon.jpg" alt="サロンの雰囲気イメージ" loading="lazy"></div>
         <div class="about-text fade-in">
           <h2 class="section-label">About</h2>
           <p class="about-name">Lumiel</p>
@@ -301,6 +312,44 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Variants / 他の業種例・トップへ（回遊導線） -->
+  <section id="variants" class="section variants" aria-label="他の業種のデモ例">
+    <div class="container">
+      <h2 class="section-label center">Other Examples</h2>
+      <p class="section-subtitle">他の業種の例も見る</p>
+      <p class="variants-lead">同じ予約システムを、業種に合わせてカスタマイズした例です。</p>
+      <div class="variants-grid">
+        <a class="variant-card is-current" href="salon.html">
+          <img class="variant-thumb" src="images/hero-salon.jpg" alt="サロンの例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Salon</span>
+            <p class="variant-name">サロンの例 — Lumiel</p>
+            <p class="variant-desc">いま表示中の例です。</p>
+          </div>
+        </a>
+        <a class="variant-card" href="lesson.html">
+          <img class="variant-thumb" src="images/hero-lesson.jpg" alt="教室の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Lesson</span>
+            <p class="variant-name">教室の例 — Manabi Base</p>
+            <p class="variant-desc">レベル選択つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+        <a class="variant-card" href="visit.html">
+          <img class="variant-thumb" src="images/hero-visit.jpg" alt="出張・訪問の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Visit</span>
+            <p class="variant-name">出張・訪問の例 — Tonari</p>
+            <p class="variant-desc">訪問エリア入力つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+      </div>
+      <p class="back-top"><a href="index.html">&larr; 汎用デモ（トップ）へ戻る</a></p>
     </div>
   </section>
 

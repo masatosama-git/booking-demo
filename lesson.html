@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-lesson">
 
-  <div class="demo-banner">これは教室向け予約自動化システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
+  <div class="demo-banner">これは教室向け予約システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -25,12 +25,10 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#genre">Lesson</a></li>
         <li><a href="#gallery">3 Steps</a></li>
-        <li><a href="#voice">Voice</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#flow">Flow</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#faq">Q&amp;A</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="index.html">他の例</a></li>
         <li><a href="#contact" class="nav-cta">予約する</a></li>
       </ul>
     </div>
@@ -38,9 +36,9 @@
 
   <section class="hero">
     <div class="hero-slides">
-      <div class="hero-slide active"><span class="hero-ph-label">Manabi Base</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Lesson</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Booking</span></div>
+      <div class="hero-slide active" role="img" aria-label="教室・学びのイメージ"></div>
+      <div class="hero-slide" role="img" aria-label="レッスンの机まわりのイメージ"></div>
+      <div class="hero-slide" role="img" aria-label="書籍・教材のイメージ"></div>
     </div>
     <div class="hero-dots">
       <button class="hero-dot active" aria-label="スライド1"></button>
@@ -99,6 +97,15 @@
             </select>
           </div>
           <div class="form-group">
+            <label for="level">レベル</label>
+            <select id="level" name="level">
+              <option value="">選択してください</option>
+              <option value="beginner">初級</option>
+              <option value="intermediate">中級</option>
+              <option value="advanced">上級</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>ご希望の日時 <span class="optional">任意</span></label>
             <div class="date-slot-picker">
               <input type="date" id="preferredDatePicker" class="preferred-date-input">
@@ -126,18 +133,22 @@
       <p class="genre-lead">体験から通常レッスン、振替まで。ご予約はすべてオンラインで完結します。</p>
       <div class="genre-grid">
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-lesson-1.jpg" alt="体験レッスンのイメージ" loading="lazy">
           <h3 class="genre-title">体験レッスン</h3>
           <p class="genre-body">まずは気軽におためしを。はじめての方向けの体験レッスンを、ネットからご予約いただけます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-lesson-2.jpg" alt="通常レッスンのイメージ" loading="lazy">
           <h3 class="genre-title">通常レッスン</h3>
           <p class="genre-body">いつものレッスンに。空いているクラスを選んで申し込むだけ。受付の確認メールが自動で届きます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-lesson-3.jpg" alt="個別レッスンのイメージ" loading="lazy">
           <h3 class="genre-title">個別レッスン</h3>
           <p class="genre-body">マンツーマンでじっくり。ご希望の日時に合わせて、個別レッスンの枠をご予約いただけます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/about-lesson.jpg" alt="振替予約のイメージ" loading="lazy">
           <h3 class="genre-title">振替予約</h3>
           <p class="genre-body">お休みの分の振替も、オンラインで。空き状況を見ながら、別の日のクラスに振り替えられます。</p>
         </div>
@@ -284,7 +295,7 @@
   <section id="about" class="section about" aria-label="この教室について">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image about-ph fade-in"><span class="about-ph-label">Manabi Base</span></div>
+        <div class="about-image fade-in"><img src="images/about-lesson.jpg" alt="教室の雰囲気イメージ" loading="lazy"></div>
         <div class="about-text fade-in">
           <h2 class="section-label">About</h2>
           <p class="about-name">Manabi Base</p>
@@ -301,6 +312,44 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Variants / 他の業種例・トップへ（回遊導線） -->
+  <section id="variants" class="section variants" aria-label="他の業種のデモ例">
+    <div class="container">
+      <h2 class="section-label center">Other Examples</h2>
+      <p class="section-subtitle">他の業種の例も見る</p>
+      <p class="variants-lead">同じ予約システムを、業種に合わせてカスタマイズした例です。</p>
+      <div class="variants-grid">
+        <a class="variant-card" href="salon.html">
+          <img class="variant-thumb" src="images/hero-salon.jpg" alt="サロンの例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Salon</span>
+            <p class="variant-name">サロンの例 — Lumiel</p>
+            <p class="variant-desc">指名スタッフ選択つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+        <a class="variant-card is-current" href="lesson.html">
+          <img class="variant-thumb" src="images/hero-lesson.jpg" alt="教室の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Lesson</span>
+            <p class="variant-name">教室の例 — Manabi Base</p>
+            <p class="variant-desc">いま表示中の例です。</p>
+          </div>
+        </a>
+        <a class="variant-card" href="visit.html">
+          <img class="variant-thumb" src="images/hero-visit.jpg" alt="出張・訪問の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Visit</span>
+            <p class="variant-name">出張・訪問の例 — Tonari</p>
+            <p class="variant-desc">訪問エリア入力つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+      </div>
+      <p class="back-top"><a href="index.html">&larr; 汎用デモ（トップ）へ戻る</a></p>
     </div>
   </section>
 

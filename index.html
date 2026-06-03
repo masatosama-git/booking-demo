@@ -14,10 +14,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-cuore">
 
   <!-- Demo banner -->
-  <div class="demo-banner">これは予約自動化システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
+  <div class="demo-banner">これは予約システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
@@ -29,9 +29,8 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#genre">Service</a></li>
         <li><a href="#gallery">3 Steps</a></li>
-        <li><a href="#voice">Voice</a></li>
+        <li><a href="#variants">業種別の例</a></li>
         <li><a href="#why">Why</a></li>
-        <li><a href="#flow">Flow</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#faq">Q&amp;A</a></li>
         <li><a href="#about">About</a></li>
@@ -43,9 +42,9 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-slides">
-      <div class="hero-slide active"><span class="hero-ph-label">Cuore</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Booking</span></div>
-      <div class="hero-slide"><span class="hero-ph-label">Smooth</span></div>
+      <div class="hero-slide active" role="img" aria-label="店内の雰囲気イメージ"></div>
+      <div class="hero-slide" role="img" aria-label="テーブル席のイメージ"></div>
+      <div class="hero-slide" role="img" aria-label="落ち着いた空間のイメージ"></div>
     </div>
     <div class="hero-dots">
       <button class="hero-dot active" aria-label="スライド1"></button>
@@ -142,18 +141,22 @@
       <p class="genre-lead">はじめての方も、いつものご利用も。ご希望に合わせてオンラインでご予約いただけます。</p>
       <div class="genre-grid">
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-cuore-1.jpg" alt="はじめての方向けのイメージ" loading="lazy">
           <h3 class="genre-title">はじめての方向け</h3>
           <p class="genre-body">初めてのご利用でも安心。流れのご説明を含めて、ゆっくりとご案内します。ネットからそのままご予約いただけます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-cuore-2.jpg" alt="通常メニューのイメージ" loading="lazy">
           <h3 class="genre-title">通常メニュー</h3>
           <p class="genre-body">いつものご利用に。空いている日時を選んで申し込むだけ。受付の確認メールが自動で届きます。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-cuore-3.jpg" alt="じっくりメニューのイメージ" loading="lazy">
           <h3 class="genre-title">じっくりメニュー</h3>
           <p class="genre-body">時間をかけて丁寧に。少し長めの枠をご用意。ご予約後の日程変更もオンラインでスムーズです。</p>
         </div>
         <div class="genre-card fade-in">
+          <img class="genre-thumb" src="images/svc-cuore-4.jpg" alt="オンライン相談のイメージ" loading="lazy">
           <h3 class="genre-title">オンライン相談</h3>
           <p class="genre-body">まずは話を聞いてみたい方へ。オンラインでのご相談枠もご予約いただけます。来店不要です。</p>
         </div>
@@ -188,6 +191,44 @@
       </div>
       <div class="gallery-cta">
         <a href="#contact" class="hero-cta">空き状況を見て予約する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Variants / 業種別の例（回遊導線） -->
+  <section id="variants" class="section variants" aria-label="業種別のデモ例">
+    <div class="container">
+      <h2 class="section-label center">Examples</h2>
+      <p class="section-subtitle">業種別のデモを見る</p>
+      <p class="variants-lead">同じ予約システムを、業種に合わせてカスタマイズした例です。<br>あなたのお店に近いものをご覧ください。</p>
+      <div class="variants-grid">
+        <a class="variant-card" href="salon.html">
+          <img class="variant-thumb" src="images/hero-salon.jpg" alt="サロンの例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Salon</span>
+            <p class="variant-name">サロンの例 — Lumiel</p>
+            <p class="variant-desc">カット・カラー・ネイルなど。指名スタッフ選択つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+        <a class="variant-card" href="lesson.html">
+          <img class="variant-thumb" src="images/hero-lesson.jpg" alt="教室の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Lesson</span>
+            <p class="variant-name">教室の例 — Manabi Base</p>
+            <p class="variant-desc">体験・通常・個別・振替。レベル選択つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
+        <a class="variant-card" href="visit.html">
+          <img class="variant-thumb" src="images/hero-visit.jpg" alt="出張・訪問の例" loading="lazy">
+          <div class="variant-body">
+            <span class="variant-kind">Visit</span>
+            <p class="variant-name">出張・訪問の例 — Tonari</p>
+            <p class="variant-desc">初回訪問・通常・定期。訪問エリア入力つきの予約フォーム。</p>
+            <span class="variant-go">この例を見る &rarr;</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -387,7 +428,7 @@
   <section id="about" class="section about" aria-label="このお店について">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image about-ph fade-in"><span class="about-ph-label">Cuore</span></div>
+        <div class="about-image fade-in"><img src="images/about-cuore.jpg" alt="お店の雰囲気イメージ" loading="lazy"></div>
         <div class="about-text fade-in">
           <h2 class="section-label">About</h2>
           <p class="about-name">Cuore</p>
