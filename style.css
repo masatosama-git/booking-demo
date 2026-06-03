@@ -2366,3 +2366,135 @@ body.theme-visit .hero-slide:nth-child(3) { background-image: url('images/about-
 @media (min-width: 1024px) {
   .form-submit { width: auto; align-self: flex-start; }
 }
+
+/* ================================================================ */
+/* MANAGE PREVIEW — buyer-facing "こう一元管理できます" static sample */
+/* Status calendar matrix + reservation detail table (no live data) */
+/* ================================================================ */
+.manage { background: var(--color-bg-warm); }
+.manage-lead {
+  text-align: center;
+  font-size: .9rem;
+  color: var(--color-text-light);
+  line-height: 1.9;
+  max-width: 640px;
+  margin: 0 auto 8px;
+}
+.manage-points {
+  list-style: none;
+  margin: 18px auto 36px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  max-width: 720px;
+}
+.manage-points li {
+  font-size: .82rem;
+  color: var(--color-text);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 16px;
+}
+.manage-points li::before { content: '✓ '; color: var(--color-accent); font-weight: 700; }
+
+.manage-block { margin-bottom: 40px; }
+.manage-caption {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+.manage-sub {
+  font-size: .8rem;
+  color: var(--color-text-light);
+  margin-bottom: 14px;
+}
+.manage-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  box-shadow: 0 4px 18px rgba(0,0,0,.05);
+}
+
+/* status calendar matrix */
+table.cal-matrix, table.detail-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  font-size: .78rem;
+}
+.cal-matrix th, .cal-matrix td {
+  border: 1px solid var(--color-border);
+  padding: 7px 6px;
+  text-align: center;
+  white-space: nowrap;
+}
+.cal-matrix thead th {
+  background: var(--color-bg-accent);
+  color: var(--color-text);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+.cal-matrix .cal-day { font-weight: 600; background: var(--color-bg-warm); text-align: left; padding-left: 12px; }
+.cal-matrix .cal-day small { display: block; font-weight: 400; color: var(--color-text-light); font-size: .68rem; }
+.cell { font-size: .72rem; line-height: 1.3; border-radius: 4px; }
+.cell .nm { display: block; font-weight: 600; }
+.cell-free    { color: var(--color-muted); }
+.cell-tmp     { background: #FBF0D2; color: #9A7826; }
+.cell-okstaff { background: #E4F1E5; color: #3F7A48; }
+.cell-fixed   { background: #C8E6C9; color: #2E6B33; }
+.cell-closed  { background: repeating-linear-gradient(135deg,#f1efea,#f1efea 4px,#e9e6df 4px,#e9e6df 8px); color: var(--color-muted); }
+
+/* legend */
+.manage-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 14px 0 0;
+  font-size: .76rem;
+  color: var(--color-text-light);
+}
+.manage-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.lg-sw { width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(0,0,0,.06); display: inline-block; }
+.lg-free  { background: var(--color-white); }
+.lg-tmp   { background: #FBF0D2; }
+.lg-ok    { background: #E4F1E5; }
+.lg-fixed { background: #C8E6C9; }
+
+/* reservation detail table */
+.detail-table th, .detail-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 11px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+.detail-table thead th {
+  background: var(--color-bg-accent);
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: .74rem;
+}
+.detail-table tbody tr:hover { background: var(--color-bg-warm); }
+.detail-table .st {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.st-tmp   { background: #FBF0D2; color: #9A7826; }
+.st-ok    { background: #E4F1E5; color: #3F7A48; }
+.st-fixed { background: #C8E6C9; color: #2E6B33; }
+.st-done  { background: #ECECEC; color: #777; }
+.manage-note {
+  font-size: .78rem;
+  color: var(--color-text-light);
+  margin-top: 12px;
+  text-align: center;
+}

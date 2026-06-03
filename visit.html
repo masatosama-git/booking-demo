@@ -25,6 +25,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#genre">Service</a></li>
         <li><a href="#gallery">3 Steps</a></li>
+        <li><a href="#manage">管理画面</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#faq">Q&amp;A</a></li>
         <li><a href="#about">About</a></li>
@@ -223,6 +224,112 @@
         <div class="why-card fade-in"><span class="why-number">02</span><h3 class="why-title">カレンダーに自動登録</h3><p class="why-body">予約が入ると、その場でカレンダーに自動登録。手入力は不要です。同じ枠を二重に受けてしまうダブルブッキングも防ぎます。</p></div>
         <div class="why-card fade-in"><span class="why-number">03</span><h3 class="why-title">受付の確認メールを自動送信</h3><p class="why-body">お申し込みが入ると、受付の確認メールを自動送信。前日のリマインドや出発時のお知らせもメールでお届けし、到着時間の目安もお伝えできます。新規予約は店主のスマホにも通知が届きます。</p></div>
         <div class="why-card fade-in"><span class="why-number">04</span><h3 class="why-title">日程変更もスムーズ</h3><p class="why-body">日程変更やキャンセルも、お客様自身がオンラインで完結。やり取りの往復が減り、双方の負担が軽くなります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manage preview：予約状況が、こう一元管理できます（静的見本） -->
+  <section id="manage" class="section manage" aria-label="予約管理画面の見本">
+    <div class="container">
+      <h2 class="section-label center">Manage</h2>
+      <p class="section-subtitle">予約状況が、こう一元管理できます</p>
+      <p class="manage-lead">入った予約は、店主側のスプレッドシートに自動でまとまります。カレンダー形式で「いつ・どの時間が・どんな状態か」がひと目でわかり、予約者名・連絡先も紐づきます。</p>
+      <ul class="manage-points">
+        <li>カレンダー形式（日 × 時間）で空き状況を一元管理</li>
+        <li>各マスに状態（空き / 仮予約 / 確定）と予約者名</li>
+        <li>予約者名・連絡先・コースも紐づく</li>
+        <li>自動確定ではなく、店主が承認・確定を選べる</li>
+      </ul>
+
+      <div class="manage-block fade-in">
+        <p class="manage-caption">① 予約状況カレンダー</p>
+        <p class="manage-sub">日付 × 時間帯のマトリクス。マスの色と名前で状況がすぐ読み取れます。（以下はサンプル表示です）</p>
+        <div class="manage-scroll">
+          <table class="cal-matrix">
+            <thead>
+              <tr><th>日付</th><th>10:00</th><th>11:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cal-day">8/16<small>土</small></td>
+                <td class="cell cell-fixed">確定<span class="nm">山田 様</span></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-tmp">仮予約<span class="nm">佐藤 様</span></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-fixed">確定<span class="nm">鈴木 様</span></td>
+                <td class="cell cell-free">空き</td>
+              </tr>
+              <tr>
+                <td class="cal-day">8/17<small>日</small></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-okstaff">仮受OK<span class="nm">高橋 様</span></td>
+                <td class="cell cell-fixed">確定<span class="nm">田中 様</span></td>
+                <td class="cell cell-fixed">確定<span class="nm">田中 様</span></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-tmp">仮予約<span class="nm">伊藤 様</span></td>
+              </tr>
+              <tr>
+                <td class="cal-day">8/18<small>月</small></td>
+                <td class="cell cell-closed">定休</td>
+                <td class="cell cell-closed">定休</td>
+                <td class="cell cell-closed">定休</td>
+                <td class="cell cell-closed">定休</td>
+                <td class="cell cell-closed">定休</td>
+                <td class="cell cell-closed">定休</td>
+              </tr>
+              <tr>
+                <td class="cal-day">8/19<small>火</small></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-tmp">仮予約<span class="nm">渡辺 様</span></td>
+                <td class="cell cell-free">空き</td>
+                <td class="cell cell-okstaff">仮受OK<span class="nm">中村 様</span></td>
+                <td class="cell cell-free">空き</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="manage-legend">
+          <span><i class="lg-sw lg-free"></i>空き</span>
+          <span><i class="lg-sw lg-tmp"></i>仮予約（店主未確認）</span>
+          <span><i class="lg-sw lg-ok"></i>仮受OK（受付済・確定前）</span>
+          <span><i class="lg-sw lg-fixed"></i>確定</span>
+        </div>
+      </div>
+
+      <div class="manage-block fade-in">
+        <p class="manage-caption">② 予約明細</p>
+        <p class="manage-sub">1予約 = 1行。予約者名・連絡先・コース・状態がまとまります。（以下はサンプル表示です）出張先のエリアも明細に記録できます。</p>
+        <div class="manage-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>予約ID</th><th>希望日時</th><th>お名前</th><th>連絡先</th><th>コース</th><th>状態</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>R-20260816-001</td><td>8/16 10:00</td><td>山田 様</td>
+                <td>yamada@example.com<br>090-0000-0001</td><td>通常コース</td>
+                <td><span class="st st-fixed">確定</span></td>
+              </tr>
+              <tr>
+                <td>R-20260816-002</td><td>8/16 13:00</td><td>佐藤 様</td>
+                <td>sato@example.com<br>090-0000-0002</td><td>初回ご訪問</td>
+                <td><span class="st st-tmp">仮予約</span></td>
+              </tr>
+              <tr>
+                <td>R-20260817-003</td><td>8/17 11:00</td><td>高橋 様</td>
+                <td>takahashi@example.com<br>090-0000-0003</td><td>定期ご利用</td>
+                <td><span class="st st-ok">仮受OK</span></td>
+              </tr>
+              <tr>
+                <td>R-20260815-004</td><td>8/15 15:00</td><td>小林 様</td>
+                <td>kobayashi@example.com<br>090-0000-0004</td><td>通常コース</td>
+                <td><span class="st st-done">完了</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="manage-note">※ 名前・連絡先・予約IDはすべて説明用のダミーです。実際のデータ連動は行いません。</p>
       </div>
     </div>
   </section>
