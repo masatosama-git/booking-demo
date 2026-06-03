@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumiel（ルミエル）｜サロン向け予約自動化システム デモサイト</title>
+  <meta name="description" content="次のご予約も、スマホひとつで。24時間ネット予約・カレンダー自動登録・メールでの受付確認・おしらせ自動化に対応した、サロン向け予約受付・管理システムの汎用デモサイトです。">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FDFBF8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="demo-banner">これはサロン向け予約自動化システムの汎用デモサイトです（サンプル表示・送信は行われません）</div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Lumiel</a>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#genre">Service</a></li>
+        <li><a href="#gallery">3 Steps</a></li>
+        <li><a href="#voice">Voice</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#flow">Flow</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#faq">Q&amp;A</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">予約する</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-slides">
+      <div class="hero-slide active"><span class="hero-ph-label">Lumiel</span></div>
+      <div class="hero-slide"><span class="hero-ph-label">Salon</span></div>
+      <div class="hero-slide"><span class="hero-ph-label">Booking</span></div>
+    </div>
+    <div class="hero-dots">
+      <button class="hero-dot active" aria-label="スライド1"></button>
+      <button class="hero-dot" aria-label="スライド2"></button>
+      <button class="hero-dot" aria-label="スライド3"></button>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">次の来店予約、<br>24時間いつでも。</h1>
+      <p class="hero-sub">お申し込みが入ると、カレンダーに自動登録。受付の確認メールも自動でお届け。<br>次のご予約も、スマホひとつで。</p>
+      <a href="#contact" class="hero-cta">空き状況を見て予約する</a>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="genre" class="section genre-section" aria-label="対応サービス">
+    <div class="container">
+      <h2 class="section-label center">Service</h2>
+      <p class="section-subtitle">対応メニュー</p>
+      <p class="genre-lead">ご来店のご予約は、すべてオンラインで。指名や当日のメニュー変更もご相談いただけます。</p>
+      <div class="genre-grid">
+        <div class="genre-card fade-in">
+          <h3 class="genre-title">カット・施術メニュー</h3>
+          <p class="genre-body">カット・カラー・パーマなど。ご希望のメニューと日時を選んで、そのままご予約いただけます。</p>
+        </div>
+        <div class="genre-card fade-in">
+          <h3 class="genre-title">初回ご来店</h3>
+          <p class="genre-body">はじめてのご来店も安心。カウンセリングを含めてゆっくりご案内します。ネットからご予約いただけます。</p>
+        </div>
+        <div class="genre-card fade-in">
+          <h3 class="genre-title">リタッチ・メンテナンス</h3>
+          <p class="genre-body">前回の施術のメンテナンスに。次回のご予約も、空き状況を見ながらスマホで完結します。</p>
+        </div>
+        <div class="genre-card fade-in">
+          <h3 class="genre-title">ネイル・エステ・リラク</h3>
+          <p class="genre-body">各種メニューのご予約に対応。日程変更やキャンセルもオンラインでスムーズに行えます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section gallery" aria-label="予約の3ステップ">
+    <div class="container">
+      <h2 class="section-label center">3 Steps</h2>
+      <p class="section-subtitle">予約は、3タップ。</p>
+      <div class="steps3">
+        <div class="step3-card fade-in">
+          <span class="step3-num">01</span>
+          <div class="step3-icon">&#128197;</div>
+          <h3 class="step3-title">空いている日時を選ぶ</h3>
+          <p class="step3-body">カレンダーで○△×の空き状況をひと目で確認。希望の日時をタップするだけ。</p>
+        </div>
+        <div class="step3-card fade-in">
+          <span class="step3-num">02</span>
+          <div class="step3-icon">&#128241;</div>
+          <h3 class="step3-title">メニューを選んで申し込む</h3>
+          <p class="step3-body">利用したいメニューを選び、フォームから申し込む。入力はかんたん、1分で完了。</p>
+        </div>
+        <div class="step3-card fade-in">
+          <span class="step3-num">03</span>
+          <div class="step3-icon">&#128276;</div>
+          <h3 class="step3-title">受付の確認メールが自動で届く</h3>
+          <p class="step3-body">お申し込みを受け付けると、受付の確認メールが自動で届きます。あとは当日を待つだけ。</p>
+        </div>
+      </div>
+      <div class="gallery-cta">
+        <a href="#contact" class="hero-cta">空き状況を見て予約する</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="voice" class="section voice" aria-label="お客様の声">
+    <div class="container">
+      <h2 class="section-label center">Voice</h2>
+      <p class="demo-note">※デモ用のサンプルです</p>
+      <div class="voice-carousel" id="voiceCarousel">
+        <div class="voice-track">
+          <div class="voice-card fade-in">
+            <p class="voice-text">「夜にスマホからサッと予約できるのが助かります。営業時間を気にしなくていいので、思い立ったときに予約できて便利です。」</p>
+            <div class="voice-meta"><span class="voice-tag">通常メニュー</span><span class="voice-author">30代・会社員</span></div>
+          </div>
+          <div class="voice-card fade-in">
+            <p class="voice-text">「申し込むとすぐ受付の確認メールが届くので安心です。ちゃんと受け付けられたか不安になることがなくなりました。」</p>
+            <div class="voice-meta"><span class="voice-tag">はじめて</span><span class="voice-author">40代・主婦</span></div>
+          </div>
+          <div class="voice-card fade-in">
+            <p class="voice-text">「日程変更も自分で空き状況を見ながらできて気がラクです。電話やメールでやり取りしなくていいのがありがたい。」</p>
+            <div class="voice-meta"><span class="voice-tag">日程変更</span><span class="voice-author">20代・学生</span></div>
+          </div>
+          <div class="voice-card fade-in">
+            <p class="voice-text">「前日にリマインドが来るのでうっかり忘れがなくなりました。通知が来ると『そうだ明日だった』と思い出せて助かります。」</p>
+            <div class="voice-meta"><span class="voice-tag">リマインド</span><span class="voice-author">50代・自営業</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-nav">
+        <button class="voice-nav-btn" id="voicePrev" aria-label="前へ">&larr;</button>
+        <div class="voice-dots" id="voiceDots"></div>
+        <button class="voice-nav-btn" id="voiceNext" aria-label="次へ">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="section why-section" aria-label="選ばれる理由">
+    <div class="container">
+      <h2 class="section-label center">Why</h2>
+      <p class="section-subtitle">予約の手間を、まるごと自動に。</p>
+      <p class="why-lead">予約を受けるのも、お知らせするのも、日程を調整するのも。<br>これまで手作業だったことを、システムが自動でつないでいきます。</p>
+      <div class="why-grid">
+        <div class="why-card fade-in"><span class="why-number">01</span><h3 class="why-title">24時間いつでも予約</h3><p class="why-body">営業時間外でも、夜中でも。お客様は空き状況を見ながら、好きなタイミングでオンライン予約できます。電話対応の手間もなくなります。</p></div>
+        <div class="why-card fade-in"><span class="why-number">02</span><h3 class="why-title">カレンダーに自動登録</h3><p class="why-body">予約が入ると、その場でカレンダーに自動登録。手入力は不要です。同じ枠を二重に受けてしまうダブルブッキングも防ぎます。</p></div>
+        <div class="why-card fade-in"><span class="why-number">03</span><h3 class="why-title">受付の確認メールを自動送信</h3><p class="why-body">お申し込みが入ると、受付の確認メールを自動送信。前日のリマインドや変更のお知らせもメールでお届けし、連絡のし忘れ・受け取り忘れを減らします。新規予約は店主のスマホにも通知が届きます。</p></div>
+        <div class="why-card fade-in"><span class="why-number">04</span><h3 class="why-title">日程変更もスムーズ</h3><p class="why-body">日程変更やキャンセルも、お客様自身がオンラインで完結。やり取りの往復が減り、双方の負担が軽くなります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="flow" class="section flow" aria-label="予約の流れ">
+    <div class="container">
+      <h2 class="section-label center">Flow</h2>
+      <p class="section-subtitle">予約から当日までの流れ</p>
+      <div class="flow-steps">
+        <div class="flow-step fade-in"><div class="flow-number">01</div><h3 class="flow-step-title">選ぶ</h3><p class="flow-step-desc">空き状況カレンダーから、ご希望の日時とメニューを選びます。空いている枠がひと目でわかります。</p></div>
+        <div class="flow-step fade-in"><div class="flow-number">02</div><h3 class="flow-step-title">自動で登録</h3><p class="flow-step-desc">送信すると、予約がカレンダーに自動登録されます。ダブルブッキングの心配はありません。</p></div>
+        <div class="flow-step fade-in"><div class="flow-number">03</div><h3 class="flow-step-title">通知が届く</h3><p class="flow-step-desc">受付の確認メールが自動で届きます。前日にはリマインドメールもお送りします。</p></div>
+        <div class="flow-step fade-in"><div class="flow-number">04</div><h3 class="flow-step-title">当日</h3><p class="flow-step-desc">あとはご来店いただくだけ。日程の変更が必要になっても、オンラインで調整できます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="section menu-section" aria-label="メニューと料金">
+    <div class="container">
+      <h2 class="section-label center">Menu</h2>
+      <p class="section-subtitle">料金プラン（税込・サンプル）</p>
+      <div class="menu-grid">
+        <div class="menu-card fade-in">
+          <div class="menu-icon">&#9986;&#65039;</div>
+          <h3 class="menu-name">カット</h3>
+          <p class="menu-desc">スタイルを整える基本のメニュー。</p>
+          <ul class="menu-details"><li>4,400円（税込）</li><li>ネット予約・自動通知つき</li></ul>
+        </div>
+        <div class="menu-card fade-in">
+          <div class="menu-icon">&#127912;</div>
+          <h3 class="menu-name">カット＋カラー</h3>
+          <p class="menu-desc">カラー込みの人気メニュー。</p>
+          <ul class="menu-details"><li>8,800円（税込）</li><li>ネット予約・自動通知つき</li></ul>
+        </div>
+        <div class="menu-card fade-in">
+          <div class="menu-icon">&#128133;</div>
+          <h3 class="menu-name">初回ネイル（オフ込み）</h3>
+          <p class="menu-desc">初回限定のおためし価格。</p>
+          <ul class="menu-details"><li>6,600円（税込）</li><li>初回・オフ込み</li><li>ネット予約・自動通知つき</li></ul>
+        </div>
+      </div>
+      <div class="menu-option fade-in">
+        <h3 class="menu-option-title">Option</h3>
+        <p>料金はサンプル表示です。実際の運用では、メニュー・所要時間・価格を自由に設定できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section faq-section" aria-label="よくある質問">
+    <div class="container">
+      <h2 class="section-label center">Q&amp;A</h2>
+      <div class="faq-list">
+        <div class="faq-item fade-in"><h3 class="faq-question">予約はどうやってすればいいですか？</h3><p class="faq-answer">ページ下部の空き状況カレンダーから、ご希望の日時を選び、メニューとお名前などを入力して送信するだけです。24時間いつでもご予約いただけます。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">スタッフの指名はできますか？</h3><p class="faq-answer">はい、ご予約時にご希望のスタッフを指名いただけます。指名スタッフの空き状況も、カレンダー上でご確認いただけます。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">当日にメニューを変更できますか？</h3><p class="faq-answer">当日のメニュー変更もご相談いただけます。所要時間によっては調整をお願いする場合がありますので、ご来店時にお気軽にお声がけください。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">予約はちゃんと取れていますか？確認できますか？</h3><p class="faq-answer">お申し込みを受け付けると、受付の確認メールが自動で届きます。その後、店主が日程を確認のうえ、ご予約の可否をあらためてメールでご連絡します。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">日程の変更はできますか？</h3><p class="faq-answer">はい。お客様ご自身でオンラインから日程変更が可能です。空き状況を見ながら、新しい日時をお選びいただけます。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">予約を忘れてしまいそうです。</h3><p class="faq-answer">前日にリマインドのメールが自動で届きます。うっかり忘れを防げますので、安心してお申し込みください。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">予約の連絡はどうやって届きますか？</h3><p class="faq-answer">受付確認・前日リマインド・変更などのご連絡は、すべてメールでお送りします。LINEの登録は不要です。</p></div>
+        <div class="faq-item fade-in"><h3 class="faq-question">予約した内容を後から確認したいです。</h3><p class="faq-answer">届いた確認通知から、いつでもご予約内容（日時・メニュー）をご確認いただけます。変更やキャンセルもそこから行えます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about" aria-label="このサロンについて">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image about-ph fade-in"><span class="about-ph-label">Lumiel</span></div>
+        <div class="about-text fade-in">
+          <h2 class="section-label">About</h2>
+          <p class="about-name">Lumiel</p>
+          <p class="about-lead">次のご予約も、スマホひとつで。</p>
+          <p class="about-summary">予約の手間を減らして、施術そのものに集中できる時間を。Lumielは、予約から来店当日までをなめらかにつなぐサロンです。</p>
+          <div class="about-profile-list">
+            <dl class="about-dl">
+              <dt>事業内容</dt><dd>予約制サロン</dd>
+              <dt>ご利用方法</dt><dd>オンライン予約（24時間受付）</dd>
+              <dt>対応</dt><dd>予約・変更・キャンセルすべてオンラインで完結</dd>
+              <dt>通知</dt><dd>メールで自動おしらせ（受付確認・前日リマインド・変更）。新規予約は店主のスマホにも通知</dd>
+              <dt>特長</dt><dd>ご予約から来店当日までスムーズ</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-nudge">
+    <div class="container">
+      <p class="contact-nudge-text">空いている日時を選んで申し込むだけ。<br>受付の確認メールが、自動で届きます。</p>
+    </div>
+  </div>
+
+  <section id="contact" class="section contact" aria-label="予約">
+    <div class="container">
+      <h2 class="section-label center">予約する</h2>
+      <p class="section-subtitle">ご希望の日時をカレンダーから選び、フォームから申し込んでください。受付の確認メールが自動で届きます。</p>
+      <div class="contact-layout">
+        <div class="av-section fade-in">
+          <p class="av-accepting">ただいま、ご予約を承っております。</p>
+          <h3 class="av-section-title">空き状況</h3>
+          <div class="av-legend">
+            <span class="av-legend-item"><span class="av-dot av-open"></span>空きあり</span>
+            <span class="av-legend-item"><span class="av-dot av-limited"></span>空き少</span>
+            <span class="av-legend-item"><span class="av-dot av-busy"></span>空きなし</span>
+          </div>
+          <div id="availabilityCalendar" class="av-calendars"></div>
+          <p class="av-note">平日は夜の枠のみ表示しています。平日昼のご希望は、フォームからご相談ください。</p>
+        </div>
+      <div class="contact-inner">
+        <div class="contact-info fade-in">
+          <p>ご希望の日時とメニューをお選びいただけるとスムーズです。</p>
+          <p class="contact-note">送信後、受付の確認メールが自動で届きます（このデモでは実際の送信は行われません）。</p>
+        </div>
+        <form class="contact-form fade-in" id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label for="name">お名前 <span class="required">*</span></label><input type="text" id="name" name="name" required autocomplete="name"></div>
+            <div class="form-group"><label for="email">メールアドレス <span class="required">*</span></label><input type="email" id="email" name="email" required autocomplete="email"></div>
+          </div>
+          <div class="form-group">
+            <label for="category">メニュー</label>
+            <select id="category" name="category">
+              <option value="">選択してください</option>
+              <option value="cut-color">カット・カラー</option>
+              <option value="perm">パーマ</option>
+              <option value="nail">ネイル</option>
+              <option value="esthe">エステ・リラク</option>
+              <option value="first">初回ご来店</option>
+              <option value="other">その他（ご相談）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ご希望の日時 <span class="optional">任意</span></label>
+            <div class="date-slot-picker">
+              <input type="date" id="preferredDatePicker" class="preferred-date-input">
+              <div id="slotContainer" class="slot-container" style="display:none">
+                <p class="slot-loading" id="slotLoading">空き枠を確認中...</p>
+                <div id="slotButtons" class="slot-buttons"></div>
+                <p class="slot-none" id="slotNone" style="display:none">この日は空きがありません。別の日をお選びいただくか、日時未定のままご相談ください。</p>
+              </div>
+            </div>
+            <p class="form-hint">日程が決まっていない場合はそのまま送信いただけます。</p>
+            <input type="hidden" id="preferredDate" name="preferredDate">
+          </div>
+          <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message" rows="4" placeholder="ご要望やご質問など"></textarea></div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-logo">Lumiel</p>
+      <p class="footer-tagline">予約も、おしらせも、自動で。</p>
+      <p class="footer-copy">&copy; Lumiel（デモサイト）</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" id="mobileCta">
+    <a href="#contact" class="mobile-cta-btn">空き状況を見て予約する</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
