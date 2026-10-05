@@ -1,0 +1,24 @@
+# アーティスト設定。config/artists.yaml にコピーして編集する（artists.yaml は Git 管理外）。
+# 複数アーティストに対応できるようリスト形式。MVP では 1 件のみ想定。
+artists:
+  - key: sample-artist            # 内部ID（英数字・ハイフン）。DB の artist_key に入る
+    name: サンプルアーティスト      # 投稿見出し【name 最新情報】に使う正式名
+    aliases: [サンプル, SAMPLE ARTIST]
+    group: サンプルグループ
+    search_keywords:              # Phase 3 以降のニュース検索で使用
+      - '"サンプルアーティスト"'
+      - '"サンプルアーティスト" 新曲'
+      - '"サンプルアーティスト" 出演'
+      - '"サンプルアーティスト" ライブ'
+      - '"サンプルアーティスト" インタビュー'
+      - '"サンプルアーティスト" 発売'
+      - '"サンプルアーティスト" MV'
+      - '"サンプルアーティスト" コラボ'
+      - '"サンプルアーティスト" テレビ'
+      - '"サンプルアーティスト" 雑誌'
+    exclude_keywords: [同姓同名, 競馬]
+    official_site: https://example.com
+    official_sns:
+      x: https://x.com/example
+      instagram: https://www.instagram.com/example
+    hashtags: []                  # 投稿末尾に付けたいハッシュタグ（任意）
