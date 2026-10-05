@@ -92,7 +92,7 @@ def _rule_rejection(ctx: AppContext, artist, article: Article) -> str | None:
     for kw in artist.exclude_keywords:
         if kw and kw in haystack:
             return f"exclude keyword: {kw}"
-    if not any(t in haystack for t in artist.match_terms):
+    if not artist.mentions(haystack):
         return "artist name not found"
     published = as_utc(article.published_at)
     max_age = timedelta(hours=ctx.settings.max_article_age_hours)

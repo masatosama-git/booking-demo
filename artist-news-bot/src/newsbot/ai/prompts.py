@@ -31,13 +31,20 @@ summary は日本語で2文以内の要約、reason は判定理由を1文で書
 def build_user_message(article: ArticleInput, artist, recent_summaries: list[str], now_iso: str) -> str:
     recent = "\n".join(f"- {s}" for s in recent_summaries) or "(なし)"
     aliases = "、".join(artist.aliases) or "(なし)"
+    group_aliases = "、".join(artist.group_aliases) or "(なし)"
+    if artist.include_group_news and artist.group:
+        group_policy = (f"グループ「{artist.group}」としての活動（{artist.name}の名前が記事に無くても）も対象。"
+                        "ただしグループ名が一般的な文章表現として使われているだけの記事は無関係とする。")
+    else:
+        group_policy = f"{artist.name}本人が登場・言及される情報のみ対象。グループ全体の話題は relevance を低くする。"
     return f"""\
 現在日時: {now_iso}
 
 # 対象アーティスト
 名前: {artist.name}
 別名: {aliases}
-グループ: {artist.group or "(なし)"}
+グループ: {artist.group or "(なし)"}（通称: {group_aliases}）
+対象範囲: {group_policy}
 公式サイト: {artist.official_site or "(不明)"}
 
 # 最近の投稿済み要約

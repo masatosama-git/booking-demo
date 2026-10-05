@@ -46,11 +46,19 @@ class Settings(BaseSettings):
     collect_interval_minutes: int = 10
 
 
+def _squash(text: str) -> str:
+    # "武藤 潤" / "武藤　潤" / "武藤潤" all match the same way.
+    return "".join(text.split())
+
+
 class ArtistProfile(BaseModel):
     key: str
     name: str
     aliases: list[str] = Field(default_factory=list)
     group: str | None = None
+    group_aliases: list[str] = Field(default_factory=list)
+    # Treat group news (no individual name in the text) as news about this artist.
+    include_group_news: bool = True
     search_keywords: list[str] = Field(default_factory=list)
     exclude_keywords: list[str] = Field(default_factory=list)
     official_site: str | None = None
@@ -60,12 +68,35 @@ class ArtistProfile(BaseModel):
     @property
     def match_terms(self) -> list[str]:
         """Names whose presence in an article suggests it is about this artist."""
-        return [t for t in [self.name, *self.aliases] if t]
+        terms = [self.name, *self.aliases]
+        if self.include_group_news:
+            terms += [self.group or "", *self.group_aliases]
+        return [t for t in terms if t]
+
+    def mentions(self, text: str) -> bool:
+        squashed = _squash(text)
+        return any(_squash(t) in squashed for t in self.match_terms)
+
+
+class FeedSource(BaseModel):
+    """An RSS/Atom feed. Only feeds the publisher offers are used; no HTML scraping."""
+
+    name: str
+    url: str
+    type: str = "news_search"  # official | agency | label | music_media | broadcaster | event | news_search
+    enabled: bool = True
+
+
+def _load_yaml(path: str | Path) -> dict:
+    return yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
 
 
 def load_artists(path: str | Path) -> list[ArtistProfile]:
-    data = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
-    return [ArtistProfile(**a) for a in data.get("artists", [])]
+    return [ArtistProfile(**a) for a in _load_yaml(path).get("artists", [])]
+
+
+def load_sources(path: str | Path) -> list[FeedSource]:
+    return [FeedSource(**src) for src in _load_yaml(path).get("sources", [])]
 
 
 @lru_cache

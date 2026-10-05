@@ -1,10 +1,9 @@
 # artist-news-bot
 
-特定アーティストの最新情報を収集し、AI で判定・要約して iPhone (ntfy) に通知、
+**原因は自分にある。（ゲンジブ）武藤潤** さんの最新情報を収集し、AI で判定・要約して iPhone (ntfy) に通知、
 **人間が「承認」をタップしたときだけ** X に投稿するシステム。完全自動投稿はしない。
 
-> 現在の実装範囲: **Phase 1〜2**（ダミー記事 → AI → DB → ntfy → 承認 → X 投稿）。
-> 実際のニュース収集（RSS 等）は Phase 3 で追加する。設計の詳細は [docs/DESIGN.md](docs/DESIGN.md)。
+> 現在の実装範囲: **Phase 1〜3**（RSS 収集 → AI → DB → ntfy → 承認 → X 投稿）。設計の詳細は [docs/DESIGN.md](docs/DESIGN.md)。
 
 ## システム概要
 
@@ -31,7 +30,7 @@ artist-news-bot/
 │   ├── pipeline.py           収集→判定→保存→通知
 │   ├── approval.py           承認・却下・X投稿（冪等）
 │   ├── ai/                   AI 判定（Anthropic / fake）とプロンプト
-│   ├── collectors/           情報源（Phase 1 は dummy のみ）
+│   ├── collectors/           情報源（rss.py: RSS/Atom、dummy.py: 動作確認用）
 │   ├── notifier.py           ntfy 送信
 │   ├── x_client.py           X API v2 クライアント
 │   ├── text.py / urls.py / tokens.py  文字数計算・URL正規化・トークン
@@ -119,12 +118,26 @@ python -m newsbot serve --port 8000
 # 運用コマンド
 python -m newsbot list [--status notified]         # 投稿候補の一覧
 python -m newsbot resend                            # ntfy 送信失敗分の再送
-python -m newsbot collect                           # 収集を1回実行（Phase 3 以降で意味を持つ）
+python -m newsbot check-sources                     # 各フィードの取得可否と該当件数を確認
+python -m newsbot collect                           # 収集を1回実行
 python -m newsbot resolve <post_id> --posted <X_ID> # 結果不明(uncertain)を手動で確定
 python -m newsbot resolve <post_id> --not-posted    # 未投稿と確認 → 再承認ボタン付き通知を再送
 ```
 
 `ENABLE_SCHEDULER=true` で `serve` 中に `COLLECT_INTERVAL_MINUTES` ごとに収集・AI 再判定・通知再送が走る。
+
+## 情報源（config/artists.yaml の `sources`）
+
+| 優先 | 情報源 | 状態 |
+|---|---|---|
+| 1 公式 | 原因は自分にある。公式サイト (genjibu.jp) | RSS 有無が未確認のため無効。HTML スクレイピングはしない |
+| 4 音楽メディア | 音楽ナタリー / Real Sound の RSS | 有効（URL は要 `check-sources` 確認） |
+| 7 ニュース検索 | Google ニュース RSS（"武藤潤" OR "ゲンジブ" OR "原因は自分にある。"） | 有効。リンクは news.google.com 経由 |
+
+- フィードは記事タイトル・概要に名前（空白違いも同一視）またはグループ名が含まれるものだけ取り込む。
+- `include_group_news: true` でグループ全体のニュースも対象（AI にも同じ方針を渡す）。
+- 取得は条件付き GET（ETag / Last-Modified）で、変化がなければ本文を再取得しない。
+- 1つのフィードが落ちても他は継続し、`collect_error` としてログに残る。
 
 ## ログ
 

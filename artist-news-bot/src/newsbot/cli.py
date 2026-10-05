@@ -18,6 +18,7 @@ def main(argv: list[str] | None = None) -> None:
     d.add_argument("--artist", help="artist key (default: first in config)")
     d.add_argument("--url", help="fixed article URL (re-running with the same URL tests dedupe)")
     sub.add_parser("collect", help="run one collection tick now")
+    sub.add_parser("check-sources", help="fetch every configured feed and show item / match counts")
     sub.add_parser("resend", help="resend notifications that failed to deliver")
     ls = sub.add_parser("list", help="list recent posts")
     ls.add_argument("--status")
@@ -56,6 +57,21 @@ def main(argv: list[str] | None = None) -> None:
             print(ingest_article(ctx, artist.key, raw))
     elif args.cmd == "collect":
         print(json.dumps(run_collection(ctx)))
+    elif args.cmd == "check-sources":
+        from newsbot.collectors.rss import RssCollector
+        from newsbot.config import load_sources
+
+        for src in load_sources(settings.artists_config):
+            if not src.enabled:
+                print(f"[skip] {src.name} (enabled: false)")
+                continue
+            c = RssCollector(src)
+            try:
+                total = len(c._download())
+                matched = sum(len(c.fetch(a)) for a in ctx.artists)
+                print(f"[ok]   {src.name}: {total} items, {matched} match artist terms")
+            except Exception as e:  # noqa: BLE001
+                print(f"[fail] {src.name}: {e}")
     elif args.cmd == "resend":
         print(f"resent: {resend_pending_notifications(ctx)}")
     elif args.cmd == "list":

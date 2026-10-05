@@ -15,6 +15,7 @@ dependencies = [
     "requests>=2.32",
     "requests-oauthlib>=2.0",
     "apscheduler>=3.10,<4",
+    "feedparser>=6.0",
 ]
 
 [project.optional-dependencies]

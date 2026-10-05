@@ -1,24 +1,48 @@
-# アーティスト設定。config/artists.yaml にコピーして編集する（artists.yaml は Git 管理外）。
-# 複数アーティストに対応できるようリスト形式。MVP では 1 件のみ想定。
+# アーティスト設定と情報源。config/artists.yaml にコピーして使う（artists.yaml は Git 管理外）。
+# 複数アーティストに対応できるようリスト形式。
+
 artists:
-  - key: sample-artist            # 内部ID（英数字・ハイフン）。DB の artist_key に入る
-    name: サンプルアーティスト      # 投稿見出し【name 最新情報】に使う正式名
-    aliases: [サンプル, SAMPLE ARTIST]
-    group: サンプルグループ
-    search_keywords:              # Phase 3 以降のニュース検索で使用
-      - '"サンプルアーティスト"'
-      - '"サンプルアーティスト" 新曲'
-      - '"サンプルアーティスト" 出演'
-      - '"サンプルアーティスト" ライブ'
-      - '"サンプルアーティスト" インタビュー'
-      - '"サンプルアーティスト" 発売'
-      - '"サンプルアーティスト" MV'
-      - '"サンプルアーティスト" コラボ'
-      - '"サンプルアーティスト" テレビ'
-      - '"サンプルアーティスト" 雑誌'
-    exclude_keywords: [同姓同名, 競馬]
-    official_site: https://example.com
-    official_sns:
-      x: https://x.com/example
-      instagram: https://www.instagram.com/example
-    hashtags: []                  # 投稿末尾に付けたいハッシュタグ（任意）
+  - key: mutoh-jun
+    name: 武藤潤                    # 投稿見出し【name 最新情報】に使う
+    aliases: []                     # 空白入り表記（武藤 潤 / 武藤　潤）は自動で同一視する
+    group: 原因は自分にある。
+    group_aliases: [ゲンジブ]
+    # true: グループ全体のニュース（武藤潤の名前が無い記事）も対象にする
+    include_group_news: true
+    # 検索 API 用のキーワード。RSS 検索では「武藤潤」単体の検索結果に包含されるため現在は未使用
+    search_keywords:
+      - '"武藤潤"'
+      - '"武藤潤" 新曲'
+      - '"武藤潤" 出演'
+      - '"武藤潤" ライブ'
+      - '"武藤潤" インタビュー'
+      - '"武藤潤" 発売'
+      - '"武藤潤" MV'
+      - '"武藤潤" コラボ'
+      - '"武藤潤" テレビ'
+      - '"武藤潤" 雑誌'
+    exclude_keywords: []            # 誤検知が出たら追加（例: 同名の別人に固有の語）
+    official_site: https://genjibu.jp/
+    official_sns: {}                # 公式アカウント URL を確認して記入
+    hashtags: []                    # 例: [ゲンジブ, 武藤潤]
+
+# RSS/Atom フィード。HTML スクレイピングはしない。
+# type が情報源の優先度になる: official > agency > label > music_media > broadcaster > event > news_search
+# 「python -m newsbot check-sources」で取得可否と該当件数を確認できる。
+sources:
+  # 1. 公式サイト: RSS の有無が未確認。提供されていれば URL を記入して enabled: true
+  - name: 原因は自分にある。公式サイト
+    url: https://genjibu.jp/
+    type: official
+    enabled: false
+  # 4. 音楽ニュースメディア（URL は一般的な配信パス。check-sources で要確認）
+  - name: 音楽ナタリー
+    url: https://natalie.mu/music/feed/news
+    type: music_media
+  - name: Real Sound
+    url: https://realsound.jp/feed
+    type: music_media
+  # 7. ニュース検索（Google ニュース RSS）。リンクは news.google.com 経由のリダイレクト URL になる
+  - name: Google ニュース
+    url: https://news.google.com/rss/search?q=%22%E6%AD%A6%E8%97%A4%E6%BD%A4%22%20OR%20%22%E3%82%B2%E3%83%B3%E3%82%B8%E3%83%96%22%20OR%20%22%E5%8E%9F%E5%9B%A0%E3%81%AF%E8%87%AA%E5%88%86%E3%81%AB%E3%81%82%E3%82%8B%E3%80%82%22&hl=ja&gl=JP&ceid=JP:ja
+    type: news_search

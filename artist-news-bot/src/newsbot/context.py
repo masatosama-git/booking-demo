@@ -37,7 +37,8 @@ def build_context(settings: Settings) -> AppContext:
     import logging
 
     from newsbot.ai import build_ai_client
-    from newsbot.config import load_artists
+    from newsbot.collectors.rss import RssCollector
+    from newsbot.config import load_artists, load_sources
     from newsbot.db import init_db, make_engine, make_session_factory
     from newsbot.notifier import NtfyNotifier
     from newsbot.x_client import build_x_client
@@ -55,6 +56,6 @@ def build_context(settings: Settings) -> AppContext:
             setattr(ctx, attr, factory())
         except Exception as e:  # noqa: BLE001 - surface config problems without crashing the server
             log.error("service not configured", extra={"event": "config_error", "service": attr, "error": str(e)})
-    # Phase 3 registers RSS / search collectors here. The dummy collector is CLI-only (ingest-dummy).
-    ctx.collectors = []
+    # The dummy collector is CLI-only (ingest-dummy); scheduled runs use the configured feeds.
+    ctx.collectors = [RssCollector(src) for src in load_sources(settings.artists_config) if src.enabled]
     return ctx

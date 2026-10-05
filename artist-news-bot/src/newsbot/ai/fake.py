@@ -7,7 +7,7 @@ from newsbot.ai.base import Analysis, ArticleInput
 class FakeAIClient:
     def analyze(self, article: ArticleInput, artist, recent_summaries: list[str]) -> Analysis:
         haystack = f"{article.title}\n{article.text or ''}"
-        related = any(t in haystack for t in artist.match_terms)
+        related = artist.mentions(haystack)
         return Analysis(
             is_about_artist=related,
             relevance_score=90 if related else 10,
