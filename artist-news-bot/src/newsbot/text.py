@@ -34,13 +34,13 @@ def strip_urls(text: str) -> str:
     return _URL_RE.sub("", text).strip()
 
 
-def compose_post(artist_name: str, body: str, url: str, hashtags: list[str] | None = None) -> str:
+def compose_post(heading: str, body: str, url: str, hashtags: list[str] | None = None) -> str:
     """Build the final post. The source URL is always included and never comes from the AI."""
     tags = " ".join(f"#{t.lstrip('#')}" for t in (hashtags or []))
     body = strip_urls(body)
 
     def render(b: str) -> str:
-        parts = [f"【{artist_name} 最新情報】", b, f"詳細👇\n{url}"]
+        parts = [f"【{heading}】", b, f"詳細👇\n{url}"]
         if tags:
             parts.append(tags)
         return "\n\n".join(p for p in parts if p)

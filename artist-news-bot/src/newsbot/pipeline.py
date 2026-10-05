@@ -151,6 +151,7 @@ def judge_article(ctx: AppContext, article_id: str) -> str:
         article.importance_score = analysis.importance_score
         article.reliability_score = analysis.reliability_score
         article.ai_reason = analysis.reason
+        article.subject = analysis.subject
         article.error_message = None
 
         st = ctx.settings
@@ -168,7 +169,7 @@ def judge_article(ctx: AppContext, article_id: str) -> str:
         ]
         log_extra = {"event": "judge", "article_id": article_id, "relevance": analysis.relevance_score,
                      "importance": analysis.importance_score, "reliability": analysis.reliability_score,
-                     "category": analysis.category, "ai_reason": analysis.reason}
+                     "category": analysis.category, "subject": analysis.subject, "ai_reason": analysis.reason}
         if failures:
             article.status = ArticleStatus.REJECTED
             article.ai_reason = f"{'; '.join(failures)} | {analysis.reason}"
@@ -177,7 +178,7 @@ def judge_article(ctx: AppContext, article_id: str) -> str:
             return "rejected"
 
         post = Post(article_id=article.id, status=PostStatus.CANDIDATE,
-                    generated_text=compose_post(artist.name, analysis.post_body, article.url, artist.hashtags))
+                    generated_text=compose_post(artist.heading(analysis.subject), analysis.post_body, article.url, artist.hashtags))
         article.status = ArticleStatus.CANDIDATE
         s.add(post)
         s.commit()
@@ -206,7 +207,7 @@ def notify_post(ctx: AppContext, post_id: str) -> bool:
             if ctx.notifier is None:
                 raise NotifyError("ntfy notifier not configured")
             ctx.notifier.send(candidate_notification(
-                artist_name=artist.name, article_title=article.title, source_name=article.source_name,
+                heading=artist.heading(article.subject or "individual"), article_title=article.title, source_name=article.source_name,
                 published_at=as_utc(article.published_at), importance=article.importance_score,
                 post_text=post.generated_text, article_url=article.url,
                 approve_url=ctx.approve_url(post.id), reject_url=ctx.reject_url(post.id), token=token,

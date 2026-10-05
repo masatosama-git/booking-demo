@@ -6,6 +6,7 @@ from typing import Protocol
 
 from pydantic import BaseModel, field_validator
 
+SUBJECTS = ["individual", "group"]  # member personally vs. the group as a whole
 CATEGORIES = ["release", "live", "tv_radio", "interview", "magazine", "mv", "collab", "event", "other"]
 
 
@@ -31,6 +32,7 @@ class Analysis(BaseModel):
     is_outdated: bool
     duplicate_of_recent: bool
     category: str
+    subject: str = "individual"
     summary: str
     post_body: str
     reason: str

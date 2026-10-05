@@ -95,3 +95,28 @@ def test_name_matching_ignores_spaces():
     assert ARTIST.mentions("武藤　潤（原因は自分にある。）")
     assert ARTIST.mentions("ゲンジブ新曲")
     assert not ARTIST.mentions("武藤さんの新曲")
+
+
+def test_group_news_gets_group_heading(ctx):
+    ctx.artists = [ARTIST]
+    ctx.collectors = [_collector(lambda r: httpx.Response(200, text=FEED))]
+    group_ids = {"https://news.example/2"}
+
+    real = ctx.ai.analyze
+
+    def analyze(article, artist, recent):
+        ctx.ai.overrides = {"subject": "group" if article.url in group_ids else "individual",
+                            "post_body": "テスト本文。"}
+        return real(article, artist, recent)
+
+    ctx.ai.analyze = analyze
+    run_collection(ctx)
+    titles = sorted(n.title for n in ctx.notifier.sent)
+    assert titles == ["原因は自分にある。最新情報", "武藤潤 最新情報"]
+    from sqlalchemy import select
+
+    from newsbot.models import Post
+    with ctx.session_factory() as s:
+        texts = sorted(s.scalars(select(Post.generated_text)).all())
+    assert texts[0].startswith("【原因は自分にある。最新情報】")
+    assert texts[1].startswith("【武藤潤 最新情報】")

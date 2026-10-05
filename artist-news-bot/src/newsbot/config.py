@@ -73,6 +73,14 @@ class ArtistProfile(BaseModel):
             terms += [self.group or "", *self.group_aliases]
         return [t for t in terms if t]
 
+    def heading(self, subject: str = "individual") -> str:
+        """Post / notification heading. Group news is labelled with the group, not the member,
+        so a group announcement is never presented as the member's personal news."""
+        label = self.group if subject == "group" and self.group else self.name
+        # "原因は自分にある。" already ends with punctuation, so no space before 最新情報
+        sep = "" if label.endswith(("。", "！", "!", "？", "?")) else " "
+        return f"{label}{sep}最新情報"
+
     def mentions(self, text: str) -> bool:
         squashed = _squash(text)
         return any(_squash(t) in squashed for t in self.match_terms)

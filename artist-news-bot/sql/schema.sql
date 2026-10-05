@@ -19,6 +19,7 @@ create table if not exists articles (
     importance_score  integer check (importance_score between 0 and 100),
     reliability_score integer check (reliability_score between 0 and 100),
     ai_reason         text,
+    subject           varchar(20) check (subject in ('individual', 'group')),
     status            varchar(20) not null default 'discovered'
                       check (status in ('discovered', 'rejected', 'candidate', 'posted')),
     error_message     text,

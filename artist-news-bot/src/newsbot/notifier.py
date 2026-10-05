@@ -70,7 +70,7 @@ def humanize_age(published_at: datetime | None) -> str:
     return f"{minutes // 1440}日前"
 
 
-def candidate_notification(*, artist_name: str, article_title: str, source_name: str | None,
+def candidate_notification(*, heading: str, article_title: str, source_name: str | None,
                            published_at: datetime | None, importance: int | None, post_text: str,
                            article_url: str, approve_url: str, reject_url: str, token: str,
                            title: str | None = None, note: str | None = None) -> Notification:
@@ -84,7 +84,7 @@ def candidate_notification(*, artist_name: str, article_title: str, source_name:
         f"投稿予定：\n{post_text}"
     )
     return Notification(
-        title=title or f"{artist_name} 最新情報",
+        title=title or heading,
         message=message,
         priority=4 if (importance or 0) >= 80 else 3,
         tags=["newspaper"],

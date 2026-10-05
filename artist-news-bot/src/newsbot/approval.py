@@ -147,7 +147,7 @@ def _notify_retry(ctx: AppContext, post_id: str, error: str) -> None:
         article = s.get(Article, post.article_id)
         artist = ctx.artist(article.artist_key)
         n = candidate_notification(
-            artist_name=artist.name, article_title=article.title, source_name=article.source_name,
+            heading=artist.heading(article.subject or "individual"), article_title=article.title, source_name=article.source_name,
             published_at=as_utc(article.published_at), importance=article.importance_score,
             post_text=post.generated_text, article_url=article.url,
             approve_url=ctx.approve_url(post_id), reject_url=ctx.reject_url(post_id), token=token,

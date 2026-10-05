@@ -8,6 +8,7 @@ class FakeAIClient:
     def analyze(self, article: ArticleInput, artist, recent_summaries: list[str]) -> Analysis:
         haystack = f"{article.title}\n{article.text or ''}"
         related = artist.mentions(haystack)
+        individual = any("".join(t.split()) in "".join(haystack.split()) for t in [artist.name, *artist.aliases])
         return Analysis(
             is_about_artist=related,
             relevance_score=90 if related else 10,
@@ -17,6 +18,7 @@ class FakeAIClient:
             is_outdated=False,
             duplicate_of_recent=False,
             category="other",
+            subject="individual" if individual else "group",
             summary=article.title,
             post_body=f"{article.title}。" if related else "",
             reason="fake provider",

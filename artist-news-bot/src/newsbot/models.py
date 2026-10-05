@@ -68,6 +68,7 @@ class Article(Base):
     importance_score: Mapped[int | None] = mapped_column(Integer)
     reliability_score: Mapped[int | None] = mapped_column(Integer)
     ai_reason: Mapped[str | None] = mapped_column(Text)
+    subject: Mapped[str | None] = mapped_column(String(20))  # individual | group (decides the heading)
     status: Mapped[str] = mapped_column(String(20), default=ArticleStatus.DISCOVERED, index=True)
     error_message: Mapped[str | None] = mapped_column(Text)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)

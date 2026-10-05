@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import anthropic
 from pydantic import ValidationError
 
-from newsbot.ai.base import CATEGORIES, AIError, Analysis, ArticleInput
+from newsbot.ai.base import CATEGORIES, SUBJECTS, AIError, Analysis, ArticleInput
 from newsbot.ai.prompts import SYSTEM_PROMPT, build_user_message
 
 log = logging.getLogger(__name__)
@@ -25,13 +25,14 @@ ANALYSIS_SCHEMA = {
         "is_outdated": {"type": "boolean"},
         "duplicate_of_recent": {"type": "boolean"},
         "category": {"type": "string", "enum": CATEGORIES},
+        "subject": {"type": "string", "enum": SUBJECTS},
         "summary": {"type": "string"},
         "post_body": {"type": "string"},
         "reason": {"type": "string"},
     },
     "required": [
         "is_about_artist", "relevance_score", "importance_score", "reliability_score",
-        "is_rumor_or_gossip", "is_outdated", "duplicate_of_recent", "category",
+        "is_rumor_or_gossip", "is_outdated", "duplicate_of_recent", "category", "subject",
         "summary", "post_body", "reason",
     ],
     "additionalProperties": False,
